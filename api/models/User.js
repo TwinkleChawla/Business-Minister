@@ -9,16 +9,28 @@
 
 module.exports = {
 
-  attributes: {
+	connection: 'MysqlServer',
 
-  		 name: {
+	tableName: 'signup',
+
+  	attributes: {
+
+  		name: {
 	  		type:'string',
 	  		required:true
 	  	},
-	  	firm_name:{
+	  	firmname:{
 	  		type:'string',
 	  		required:true
-	  	}
+	  	},
+	  	mobile:{
+	  		type:'integer',
+	  		required:true
+	  	},
+	  	telephone:{
+	  		type:'integer',
+	  		required:true
+	  	},
 	  	email: {
 	  		type:'string',
 	  		email:true,
@@ -27,8 +39,7 @@ module.exports = {
 	  	},
 	  	password:{
 	  		type:'string',
-	  		required:true,
-	  		columnName: 'encryptedPassword'
+	  		required:true
 	  	},
 	  	toJSON: function() {
             var obj = this.toObject();
@@ -41,9 +52,9 @@ module.exports = {
 	  	if (!values.password || values.password != values.confirmation) {
 	  		return next({err: ["Password doesn't match password confirmation."]});
 	  	}
-	  	require('bcrypt').hash(values.password, 10, function passwordEncrypted(err, encryptedPassword){
+	  	require('bcrypt').hash(values.password, 10, function passwordEncrypted(err, password){
 	  		if (err) return next(err);
-	  		values.password = encryptedPassword;
+	  		values.password = password;
 	  		next();
 	  	});
   	}
