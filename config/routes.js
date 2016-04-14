@@ -43,7 +43,7 @@ module.exports.routes = {
   'get /signup': {
     view: 'signup'
   }
-
+  
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
