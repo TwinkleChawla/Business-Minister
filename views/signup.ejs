@@ -1,11 +1,45 @@
 <h1>Signup</h1>
-<form method="POST" action="/user">
-  <input type="text" name="name">
-  <input type="text" name="firmname">
-  <input type="number" name="mobile">
-  <input type="number" name="telephone">
-  <input type="email" name="email">
-  <input type="password" name="password">
-  <input type="submit" value="submit">
-</form>
+<div class="row">
+    <form class="col s12" method="POST" action="/login">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="name" type="text" class="validate">
+          <label for="name">Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="firmname" type="text" class="validate">
+          <label for="firmname">Firm Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="mobile" type="text" class="validate">
+          <label for="mobille">Mobile</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="telephone" type="text" class="validate">
+          <label for="telephone">Telephone</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="col s12 input-field">
+          <button class="teal waves-effect waves-light btn input-field" type="submit">Submit</button>
+        </div>
+    </form>
+  </div>
 
