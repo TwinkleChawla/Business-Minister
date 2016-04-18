@@ -21,7 +21,6 @@ module.exports = {
   			type:'integer',
   			autoIncrement: true
   		},
-
   		JobName: {
 	  		type:'string',
 	  		required:true
