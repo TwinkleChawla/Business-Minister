@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `BusinessMinister` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `BusinessMinister`;
 -- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
 --
 -- Host: 127.0.0.1    Database: BusinessMinister
@@ -16,77 +18,84 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `customerAccount`
+-- Table structure for table `order`
 --
 
-DROP TABLE IF EXISTS `customerAccount`;
+DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customerAccount` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(45) NOT NULL,
-  `secondName` varchar(45) NOT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `mobileNo` int(11) DEFAULT NULL,
-  `telephoneNo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
+CREATE TABLE `order` (
+  `id_order` int(11) NOT NULL AUTO_INCREMENT,
+  `id_customer` int(11) DEFAULT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `discount` int(11) DEFAULT NULL,
+  `total_amount` decimal(10,0) DEFAULT NULL,
+  `advance_pay` int(11) DEFAULT NULL,
+  `due_pay` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `id_bill` varchar(45) DEFAULT '-1',
+  PRIMARY KEY (`id_order`),
+  UNIQUE KEY `id_order_UNIQUE` (`id_order`),
+  UNIQUE KEY `id_customer_UNIQUE` (`id_customer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customerAccount`
+-- Dumping data for table `order`
 --
 
-LOCK TABLES `customerAccount` WRITE;
-/*!40000 ALTER TABLE `customerAccount` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customerAccount` ENABLE KEYS */;
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `customerJob`
+-- Table structure for table `suborder`
 --
 
-DROP TABLE IF EXISTS `customerJob`;
+DROP TABLE IF EXISTS `suborder`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customerJob` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `jobName` varchar(50) NOT NULL,
-  `description` varchar(100) DEFAULT NULL,
+CREATE TABLE `suborder` (
+  `id_suborder` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_order` int(11) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `product_description` varchar(100) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
-  `size` geometry DEFAULT NULL,
-  `weight` int(11) DEFAULT NULL,
+  `unit_description` geometry DEFAULT NULL,
   `vat` int(11) DEFAULT NULL,
   `tax` int(11) DEFAULT NULL,
+  `custom_tax_1` int(11) DEFAULT NULL,
+  `custom_tax_2` int(11) DEFAULT NULL,
+  `custom_tax_3` int(11) DEFAULT NULL,
   `amount` int(11) NOT NULL,
   `discount` int(11) DEFAULT NULL,
   `totalAmount` int(11) NOT NULL,
-  `advancePay` int(11) NOT NULL,
-  `duePay` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_suborder`),
+  UNIQUE KEY `id_UNIQUE` (`id_suborder`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customerJob`
+-- Dumping data for table `suborder`
 --
 
-LOCK TABLES `customerJob` WRITE;
-/*!40000 ALTER TABLE `customerJob` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customerJob` ENABLE KEYS */;
+LOCK TABLES `suborder` WRITE;
+/*!40000 ALTER TABLE `suborder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `suborder` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `signup`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `signup`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `signup` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `firmname` varchar(30) NOT NULL,
@@ -101,13 +110,13 @@ CREATE TABLE `signup` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `signup`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `signup` WRITE;
-/*!40000 ALTER TABLE `signup` DISABLE KEYS */;
-INSERT INTO `signup` VALUES (1,'Twinkle','Abc',784466,123456,'twinkle1chawla@gmail.com','$2a$10$BR8xRqSR9Tdj31iofAfFTeF'),(2,'vajahat','XYZ',45642788,7434568,'vkstack@gmail.com','$2a$10$0UmSUBNCRjIvXD599UmvqeW');
-/*!40000 ALTER TABLE `signup` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Twinkle','Abc',784466,123456,'twinkle1chawla@gmail.com','$2a$10$BR8xRqSR9Tdj31iofAfFTeF'),(2,'vajahat','XYZ',45642788,7434568,'vkstack@gmail.com','$2a$10$0UmSUBNCRjIvXD599UmvqeW');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -119,4 +128,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-18 23:25:22
+-- Dump completed on 2016-04-20  2:58:58
